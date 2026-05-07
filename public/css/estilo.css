@@ -143,8 +143,7 @@ body {
   display: flex;
   justify-content: center;
   font-size: 40px;
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 700; 
 }
 
 .toda_historia {
@@ -157,16 +156,18 @@ body {
 }
 
 .foto_historia img {
-  width: 850px;
+  width: 100%;
+  max-width: 900px;
   height: auto;
   border-radius: 10px;
+  
 }
 
 .textos {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  text-align: right;
+  text-align: center;
   max-width: 500px;
 }
 
@@ -174,6 +175,7 @@ body {
   font-size: 40px;
   font-weight: 800;
   color: white;
+  text-align: center;
 }
 
 .historia {
@@ -181,6 +183,48 @@ body {
   margin-top: 10px;
   line-height: 1.6;
   color: #d1d5db;
+}
+
+/* DESTAQUES DO BRASIL */
+
+.titulo_destaques {
+  color: #e3b062;
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.destaques_container {
+  display: flex;
+  justify-content: center;
+  gap: 300px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.card_atleta {
+  width: 450px;
+  text-align: center;
+}
+
+.imagem_atletas img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.texto_atletas h2 {
+  color: #e3b062;
+  margin-top: 15px;
+  font-size: 28px;
+}
+
+.texto_atletas p {
+  color: #d1d5db;
+  font-size: 18px;
+  line-height: 1.5;
 }
 
 /* FOOTER */
@@ -221,6 +265,8 @@ body {
   height: 100%;
 }
 
+/* CARD */
+
 .card {
   width: 100%;
   max-width: 450px;
@@ -228,13 +274,12 @@ body {
   border: 2px solid #e3b062;
   border-radius: 12px;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  padding: 30px;
-  color: white;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  align-items: center;
   padding: 40px 30px;
   gap: 15px;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .card h2 {
@@ -243,54 +288,56 @@ body {
   color: #e3b062;
 }
 
+/* FORMULÁRIO */
+
 .formulario {
   display: flex;
-  height: 90%;
-  width: 100%;
-  justify-content: space-around;
   flex-direction: column;
   gap: 12px;
-}
-
-.formulario span {
-  font-size: 15px;
-  font-weight: 700;
-  color: #d1d5db;
-  text-align: left
-}
-
-.formulario input {
-  border: 2px solid #e3b062;
-  background-color: #0a1f44;
-  color: white;
-  text-align: left;
-  border-radius: 8px;
-  height: 40px;
-  transition: 0.3s;
-  padding: 0 10px;
-}
-
-.formulario input:focus {
-  outline: none;
-  border-color: white;
-}
-
-.formulario select {
-  border: 2px solid #32b9cd;
-  background-color: white;
-  color: gray;
-  height: 36px;
-  text-align: center;
-  border-radius: 10px;
-  margin: 0;
+  width: 100%;
 }
 
 .campo {
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  padding: 5px 0;
 }
+
+.formulario span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #d1d5db;
+  margin-bottom: 4px;
+}
+
+/* INPUTS */
+
+.formulario input {
+  border: 2px solid #e3b062;
+  background-color: #0a1f44;
+  color: white;
+  border-radius: 8px;
+  height: 40px;
+  padding: 0 10px;
+  transition: 0.3s;
+}
+
+.formulario input:focus {
+  outline: none;
+  border-color: #ffffff;
+  box-shadow: 0 0 5px #e3b062;
+}
+
+/* SELECT */
+
+.formulario select {
+  border: 2px solid #e3b062;
+  background-color: #0a1f44;
+  color: white;
+  height: 40px;
+  border-radius: 8px;
+}
+
+/* BOTÃO */
 
 .botao {
   cursor: pointer;
@@ -299,10 +346,12 @@ body {
   font-size: 18px;
   color: #081733;
   background-color: #e3b062;
-  width: 100px;
+  width: 100%;
+  max-width: 200px;
   height: 45px;
   margin-top: 20px;
   transition: 0.3s;
+  align-self: center;
 }
 
 .botao:hover {
@@ -310,75 +359,7 @@ body {
   transform: scale(1.05);
 }
 
-.loading-div {
-  width: 50px;
-  display: none;
-}
-
-.loading-div img {
-  height: 50px;
-  width: 50px;
-}
-
-#div_erros_login {
-  display: none
-}
-
-/* FORMULARIO */
-
-.alerta_erro {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.card_erro {
-  display: none;
-  background-color: #fff;
-  color: black;
-  width: 230px;
-  position: fixed;
-  border-radius: 4px;
-  border: #ED145B 3px solid;
-  padding: 10px;
-  margin-right: 10%;
-}
-
-.card_erro #mensagem_erro {
-  font-weight: 500;
-  font-size: 20px;
-}
-
-.formulario .tipo_campo {
-  font-size: 20px;
-  font-weight: 600 !important;
-}
-
-.formulario {
-  display: flex;
-  flex-direction: column;
-}
-
-input {
-  margin-bottom: 10px;
-  border: 2px solid #32b9cd;
-  padding: 10px;
-  text-align: center;
-  border-radius: 10px;
-}
-
-.btn {
-  font-family: "Barlow", sans-serif;
-  border: 0;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 18px;
-  padding: 10px 15px;
-  color: white;
-  background-color: #ED145B;
-  width: 120px;
-  align-self: center;
-  margin-top: 5px;
-}
+/* LOADING */
 
 .loading-div {
   width: 50px;
@@ -387,8 +368,35 @@ input {
 }
 
 .loading-div img {
-  height: 50px;
   width: 50px;
+  height: 50px;
+}
+
+/* ERROS */
+
+.alerta_erro {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card_erro {
+  display: none;
+  background-color: #e3b062;
+  color: #081733;
+  width: 230px;
+  position: fixed;
+  border-radius: 6px;
+  padding: 10px;
+  margin-right: 10%;
+  font-weight: 600;
+}
+
+.card_erro #mensagem_erro {
+  font-size: 16px;
+}
+
+#div_erros_login {
+  display: none;
 }
 
 /* SIMULADOR */
