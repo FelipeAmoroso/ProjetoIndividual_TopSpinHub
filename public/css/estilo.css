@@ -14,7 +14,6 @@ body {
 :root {
   --tamanho-header: 100px;
   --tamanho-banner: calc(90vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-  --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-footer: 65px;
 }
@@ -226,6 +225,102 @@ body {
   font-size: 18px;
   line-height: 1.5;
 }
+
+
+/* REGRAS */
+
+
+.titulo_regras {
+  display: flex;
+  justify-content: center;
+  margin-top: 140px;
+}
+
+.titulo_regras p {
+  color: #e3b062;
+  font-size: 42px;
+  font-weight: 700;
+  border-bottom: 3px solid #e3b062;
+  padding-bottom: 10px;
+}
+
+
+.regra_container {
+  width: 85%;
+  margin: auto;
+  margin-bottom: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+/* INVERTE O LADO */
+
+.reverso {
+  flex-direction: row-reverse;
+}
+
+/* IMAGEM */
+
+.imagens_regra {
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+}
+
+.imagem_regra img {
+  width: 500px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 3px solid #e3b062;
+}
+
+/* TEXTOS */
+
+.texto_regra {
+  max-width: 650px;
+}
+
+.texto_regra h2 {
+  color: #e3b062;
+  font-size: 38px;
+  margin-bottom: 20px;
+}
+
+.texto_regra h3 {
+  color: #e3b062;
+  font-size: 24px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.texto_regra p {
+  color: #d1d5db;
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+/* LISTAS */
+
+.texto_regra ul {
+  padding-left: 25px;
+  margin-bottom: 20px;
+}
+
+.texto_regra li {
+  color: white;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.texto_regra li::marker {
+  color: #e3b062;
+}
+
+
+
 
 /* FOOTER */
 
