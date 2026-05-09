@@ -2,192 +2,186 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Top Spin Hub | Quiz</title>
+    <title>Top Spin Hub | Quiz</title>
 
-  <script src="./js/sessao.js"></script>
+    <script src="./js/sessao.js"></script>
 
-  <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="stylesheet" href="./css/estilo.css">
 
 </head>
 
 <body onload="onloadEsconder()">
 
-  <!-- HEADER -->
+    <div class="header">
+        <div class="container">
 
-  <div class="header">
-    <div class="container">
+            <div class="boxes">
+                <div class="box">
+                    <a href="#">
+                        <img src="./assets/imgs/logo.png">
+                    </a>
+                </div>
+            </div>
 
-      <div class="boxes">
-        <div class="box">
-          <a href="#">
-            <img src="./assets/imgs/logo.png">
-          </a>
+            <div class="container_bt">
+                <ul class="navbar">
+
+                    <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+
+                    <li>
+                        <a href="index.html">História</a>
+                    </li>
+
+                    <li>
+                        <a href="regras.html">Regras</a>
+                    </li>
+
+                    <li class="agora">
+                        <a href="quiz.html">Quiz</a>
+                    </li>
+
+                    <li>|</li>
+
+                    <li>
+                        <a href="login.html">Login</a>
+                    </li>
+
+                    <li>
+                        <a href="cadastro.html">Cadastro</a>
+                    </li>
+
+                </ul>
+            </div>
+
         </div>
-      </div>
-
-      <div class="container_bt">
-        <ul class="navbar">
-
-          <li>
-            <a href="index.html">Inicio</a>
-          </li>
-
-          <li>
-            <a href="index.html">História</a>
-          </li>
-
-          <li>
-            <a href="regras.html">Regras</a>
-          </li>
-
-          <li class="agora">
-            <a href="quiz.html">Quiz</a>
-          </li>
-
-          <li>|</li>
-
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
-
-        </ul>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- QUIZ -->
-
-  <div id="pontuacaoEJogo">
-
-    <button id="btnIniciarQuiz" onclick="iniciarQuiz()">
-      INICIAR QUIZ
-    </button>
-
-    <!-- CARD PONTUAÇÃO -->
-
-    <div id="pontuacao">
-
-      <div id="pontuacaoDuranteJogo">
-
-        <span>
-          Quantidade de acertos:
-          <span id="spanCertas">0</span>
-        </span>
-
-        <span>
-          Quantidade de erros:
-          <span id="spanErradas">0</span>
-        </span>
-
-      </div>
-
-      <div id="pontuacaoFinalJogo">
-
-        <span id="pontuacaoFinal">
-          Pontuação Final:
-          <span id="spanPontuacaoFinal">0</span>
-        </span>
-
-        <span id="msgFinal"></span>
-
-      </div>
-
     </div>
 
-    <!-- CARD QUIZ -->
+    <div id="pontuacaoEJogo">
 
-    <div id="jogo">
-
-      <div id="infoQuestao">
-
-        <span>
-          Questão atual:
-          <span id="spanNumeroDaQuestaoAtual"></span>
-          de
-          <span id="qtdQuestoes"></span>
-          questões.
-        </span>
-
-      </div>
-
-      <div id="perguntaDaQuestaoAtual">
-
-        <span id="spanQuestaoExibida"></span>
-
-      </div>
-
-      <div id="infoAlternativas">
-
-        <span>
-          <em>Escolha uma opção:</em>
-        </span>
-
-      </div>
-
-      <div id="opcoes">
-
-        <span>
-
-          <input type="radio" id="primeiraOpcao" name="option" value="alternativaA">
-
-          <label for="primeiraOpcao" id="labelOpcaoUm"></label>
-
-        </span>
-
-        <span>
-
-          <input type="radio" id="segundaOpcao" name="option" value="alternativaB">
-
-          <label for="segundaOpcao" id="labelOpcaoDois"></label>
-
-        </span>
-
-        <span>
-
-          <input type="radio" id="terceiraOpcao" name="option" value="alternativaC">
-
-          <label for="terceiraOpcao" id="labelOpcaoTres"></label>
-
-        </span>
-
-        <span>
-
-          <input type="radio" id="quartaOpcao" name="option" value="alternativaD">
-
-          <label for="quartaOpcao" id="labelOpcaoQuatro"></label>
-
-        </span>
-
-      </div>
-
-      <div id="botoes">
-
-        <button onclick="submeter()" id="btnSubmeter">
-          Submeter resposta
+        <button id="btnIniciarQuiz" onclick="iniciarQuiz()">
+            INICIAR QUIZ
         </button>
 
-        <button onclick="avancar()" id="btnProx" disabled>
-          Próxima questão
-        </button>
+        <!-- CARD PONTUAÇÃO -->
+        <div id="pontuacao">
 
-        <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>
-          Tentar novamente
-        </button>
+            <div id="pontuacaoDuranteJogo">
+                
+                <span>
+                    Quantidade de acertos:
+                    <span id="spanCertas">0</span>
+                </span>
 
-      </div>
+                <span>
+                    Quantidade de erros:
+                    <span id="spanErradas">0</span>
+                </span>
+
+            </div>
+
+            <div id="pontuacaoFinalJogo">
+
+                <span id="pontuacaoFinal">
+                    Pontuação Final:
+                    <span id="spanPontuacaoFinal">0</span>
+                </span>
+
+                <span id="msgFinal"></span>
+
+            </div>
+
+        </div>
+
+        <!-- CARD QUIZ -->
+        <div id="jogo">
+
+            <div id="infoQuestao">
+
+                <span>
+                    Questão atual:
+                    <span id="spanNumeroDaQuestaoAtual"></span>
+                    de
+                    <span id="qtdQuestoes"></span>
+                    questões.
+                </span>
+
+            </div>
+
+            <div id="perguntaDaQuestaoAtual">
+
+                <span id="spanQuestaoExibida"></span>
+
+            </div>
+
+            <div id="infoAlternativas">
+
+                <span>
+                    <em>Escolha uma opção:</em>
+                </span>
+
+            </div>
+
+            <div id="opcoes">
+
+                <span>
+
+                    <input type="radio" id="primeiraOpcao" name="option" value="alternativaA">
+
+                    <label for="primeiraOpcao" id="labelOpcaoUm"></label>
+
+                </span>
+
+                <span>
+
+                    <input type="radio" id="segundaOpcao" name="option" value="alternativaB">
+
+                    <label for="segundaOpcao" id="labelOpcaoDois"></label>
+
+                </span>
+
+                <span>
+
+                    <input type="radio" id="terceiraOpcao" name="option" value="alternativaC">
+
+                    <label for="terceiraOpcao" id="labelOpcaoTres"></label>
+
+                </span>
+
+                <span>
+
+                    <input type="radio" id="quartaOpcao" name="option" value="alternativaD">
+
+                    <label for="quartaOpcao" id="labelOpcaoQuatro"></label>
+
+                </span>
+
+            </div>
+
+            <div id="botoes">
+
+                <button onclick="submeter()" id="btnSubmeter">
+                    Submeter resposta
+                </button>
+
+                <button onclick="avancar()" id="btnProx" disabled>
+                    Próxima questão
+                </button>
+
+                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>
+                    Tentar novamente
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
-
-  </div>
 
 </body>
 
@@ -195,296 +189,296 @@
 
 <script>
 
-  const listaDeQuestoes = [
+    const listaDeQuestoes = [
 
-    {
-      pergunta: "Qual país é considerado o berço do tênis de mesa?",
-      alternativaA: "Brasil",
-      alternativaB: "China",
-      alternativaC: "Inglaterra",
-      alternativaD: "Japão",
-      alternativaCorreta: "alternativaC"
-    },
+        {
+            pergunta: "Qual país é considerado o berço do tênis de mesa?",
+            alternativaA: "Brasil",
+            alternativaB: "China",
+            alternativaC: "Inglaterra",
+            alternativaD: "Japão",
+            alternativaCorreta: "alternativaC"
+        },
 
-    {
-      pergunta: "Qual é o número mínimo de pontos para vencer um set no tênis de mesa?",
-      alternativaA: "11 pontos",
-      alternativaB: "15 pontos",
-      alternativaC: "21 pontos",
-      alternativaD: "10 pontos",
-      alternativaCorreta: "alternativaA"
-    },
+        {
+            pergunta: "Qual é o número mínimo de pontos para vencer um set no tênis de mesa?",
+            alternativaA: "11 pontos",
+            alternativaB: "15 pontos",
+            alternativaC: "21 pontos",
+            alternativaD: "10 pontos",
+            alternativaCorreta: "alternativaA"
+        },
 
-    {
-      pergunta: "Qual destes jogadores é um grande nome do tênis de mesa brasileiro?",
-      alternativaA: "Neymar",
-      alternativaB: "Hugo Calderano",
-      alternativaC: "Gustavo Kuerten",
-      alternativaD: "Oscar Schmidt",
-      alternativaCorreta: "alternativaB"
-    },
+        {
+            pergunta: "Qual destes jogadores é um grande nome do tênis de mesa brasileiro?",
+            alternativaA: "Neymar",
+            alternativaB: "Hugo Calderano",
+            alternativaC: "Gustavo Kuerten",
+            alternativaD: "Oscar Schmidt",
+            alternativaCorreta: "alternativaB"
+        },
 
-    {
-      pergunta: "Como também é conhecido o tênis de mesa?",
-      alternativaA: "Ping Pong",
-      alternativaB: "Mini Tennis",
-      alternativaC: "Fast Ball",
-      alternativaD: "Table Ball",
-      alternativaCorreta: "alternativaA"
-    },
+        {
+            pergunta: "Como também é conhecido o tênis de mesa?",
+            alternativaA: "Ping Pong",
+            alternativaB: "Mini Tennis",
+            alternativaC: "Fast Ball",
+            alternativaD: "Table Ball",
+            alternativaCorreta: "alternativaA"
+        },
 
-    {
-      pergunta: "Qual país domina historicamente o tênis de mesa mundial?",
-      alternativaA: "Argentina",
-      alternativaB: "Alemanha",
-      alternativaC: "China",
-      alternativaD: "Canadá",
-      alternativaCorreta: "alternativaC"
+        {
+            pergunta: "Qual país domina historicamente o tênis de mesa mundial?",
+            alternativaA: "Argentina",
+            alternativaB: "Alemanha",
+            alternativaC: "China",
+            alternativaD: "Canadá",
+            alternativaCorreta: "alternativaC"
+        }
+
+    ]
+
+    let numeroDaQuestaoAtual = 0
+    let pontuacaoFinal = 0
+    let certas = 0
+    let erradas = 0
+
+    let quantidadeDeQuestoes = listaDeQuestoes.length
+
+    function onloadEsconder() {
+
+        document.getElementById('pontuacao').style.display = "none"
+
+        document.getElementById('jogo').style.display = "none"
     }
 
-  ]
+    function iniciarQuiz() {
 
-  let numeroDaQuestaoAtual = 0
-  let pontuacaoFinal = 0
-  let certas = 0
-  let erradas = 0
+        document.getElementById('pontuacao').style.display = "flex"
 
-  let quantidadeDeQuestoes = listaDeQuestoes.length
+        document.getElementById('jogo').style.display = "flex"
 
-  function onloadEsconder() {
+        document.getElementById('btnIniciarQuiz').style.display = "none"
 
-    document.getElementById('pontuacao').style.display = "none"
+        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
 
-    document.getElementById('jogo').style.display = "none"
-  }
+        preencherHTMLcomQuestaoAtual(0)
 
-  function iniciarQuiz() {
-
-    document.getElementById('pontuacao').style.display = "flex"
-
-    document.getElementById('jogo').style.display = "flex"
-
-    document.getElementById('btnIniciarQuiz').style.display = "none"
-
-    document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
-
-    preencherHTMLcomQuestaoAtual(0)
-
-    btnSubmeter.disabled = false
-    btnProx.disabled = true
-    btnTentarNovamente.disabled = true
-  }
-
-  function preencherHTMLcomQuestaoAtual(index) {
-
-    habilitarAlternativas(true)
-
-    const questaoAtual = listaDeQuestoes[index]
-
-    numeroDaQuestaoAtual = index
-
-    document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = index + 1
-
-    document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta
-
-    document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA
-
-    document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB
-
-    document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC
-
-    document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD
-  }
-
-  function submeter() {
-
-    const options = document.getElementsByName("option")
-
-    let marcada = false
-
-    for (let i = 0; i < options.length; i++) {
-
-      if (options[i].checked) {
-
-        marcada = true
-      }
+        btnSubmeter.disabled = false
+        btnProx.disabled = true
+        btnTentarNovamente.disabled = true
     }
 
-    if (!marcada) {
+    function preencherHTMLcomQuestaoAtual(index) {
 
-      alert("Escolha uma alternativa!")
+        habilitarAlternativas(true)
 
-    } else {
+        const questaoAtual = listaDeQuestoes[index]
 
-      btnSubmeter.disabled = true
+        numeroDaQuestaoAtual = index
 
-      btnProx.disabled = false
+        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = index + 1
 
-      habilitarAlternativas(false)
+        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta
 
-      checarResposta()
-    }
-  }
+        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA
 
-  function habilitarAlternativas(valor) {
+        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB
 
-    primeiraOpcao.disabled = !valor
-    segundaOpcao.disabled = !valor
-    terceiraOpcao.disabled = !valor
-    quartaOpcao.disabled = !valor
-  }
+        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC
 
-  function avancar() {
-
-    btnProx.disabled = true
-
-    btnSubmeter.disabled = false
-
-    desmarcarRadioButtons()
-
-    if (numeroDaQuestaoAtual <= quantidadeDeQuestoes - 1) {
-
-      preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
-
-    } else {
-
-      finalizarJogo()
+        document.getElementById("labelOpcaoQuatro").innerHTML = questaoAtual.alternativaD
     }
 
-    limparCores()
-  }
+    function submeter() {
 
-  function tentarNovamente() {
+        const options = document.getElementsByName("option")
 
-    window.location.reload()
-  }
+        let marcada = false
 
-  function checarResposta() {
+        for (let i = 0; i < options.length; i++) {
 
-    const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
+            if (options[i].checked) {
 
-    const respostaCorreta = questaoAtual.alternativaCorreta
+                marcada = true
+            }
+        }
 
-    const options = document.getElementsByName("option")
+        if (!marcada) {
 
-    let alternativaCorreta = null
+            alert("Escolha uma alternativa!")
 
-    options.forEach((option) => {
+        } else {
 
-      if (option.value == respostaCorreta) {
+            btnSubmeter.disabled = true
 
-        alternativaCorreta = option.labels[0].id
-      }
-    })
+            btnProx.disabled = false
 
-    options.forEach((option) => {
+            habilitarAlternativas(false)
 
-      if (option.checked && option.value == respostaCorreta) {
-
-        document.getElementById(alternativaCorreta)
-          .classList.add("text-success-with-bg")
-
-        pontuacaoFinal++
-        certas++
-
-        document.getElementById("spanCertas").innerHTML = certas
-
-        numeroDaQuestaoAtual++
-
-      }
-
-      else if (option.checked && option.value != respostaCorreta) {
-
-        const errada = option.labels[0].id
-
-        document.getElementById(errada)
-          .classList.add("text-danger-with-bg")
-
-        document.getElementById(alternativaCorreta)
-          .classList.add("text-success-with-bg")
-
-        erradas++
-
-        document.getElementById("spanErradas").innerHTML = erradas
-
-        numeroDaQuestaoAtual++
-      }
-
-    })
-  }
-
-  function limparCores() {
-
-    const options = document.getElementsByName("option")
-
-    options.forEach((option) => {
-
-      document.getElementById(option.labels[0].id)
-        .classList.remove("text-danger-with-bg")
-
-      document.getElementById(option.labels[0].id)
-        .classList.remove("text-success-with-bg")
-
-    })
-  }
-
-  function desmarcarRadioButtons() {
-
-    const options = document.getElementsByName("option")
-
-    for (let i = 0; i < options.length; i++) {
-
-      options[i].checked = false
-    }
-  }
-
-  function finalizarJogo() {
-
-    let mensagemFinal = ""
-
-    let classeMensagem = ""
-
-    const porcentagem = pontuacaoFinal / quantidadeDeQuestoes
-
-    if (porcentagem <= 0.3) {
-
-      mensagemFinal = "Você precisa treinar mais!"
-
-      classeMensagem = "text-danger-with-bg"
-
+            checarResposta()
+        }
     }
 
-    else if (porcentagem < 0.9) {
+    function habilitarAlternativas(valor) {
 
-      mensagemFinal = "Bom desempenho!"
-
-      classeMensagem = "text-warning-with-bg"
-
+        primeiraOpcao.disabled = !valor
+        segundaOpcao.disabled = !valor
+        terceiraOpcao.disabled = !valor
+        quartaOpcao.disabled = !valor
     }
 
-    else {
+    function avancar() {
 
-      mensagemFinal = "Parabéns! Você é fera no tênis de mesa!"
+        btnProx.disabled = true
 
-      classeMensagem = "text-success-with-bg"
+        btnSubmeter.disabled = false
+
+        desmarcarRadioButtons()
+
+        if (numeroDaQuestaoAtual <= quantidadeDeQuestoes - 1) {
+
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+
+        } else {
+
+            finalizarJogo()
+        }
+
+        limparCores()
     }
 
-    mensagemFinal += "<br> Você acertou " +
-      Math.round(porcentagem * 100) + "% das questões."
+    function tentarNovamente() {
 
-    document.getElementById("msgFinal").innerHTML = mensagemFinal
+        window.location.reload()
+    }
 
-    document.getElementById("msgFinal")
-      .classList.add(classeMensagem)
+    function checarResposta() {
 
-    document.getElementById("spanPontuacaoFinal")
-      .innerHTML = pontuacaoFinal
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual]
 
-    btnSubmeter.disabled = true
+        const respostaCorreta = questaoAtual.alternativaCorreta
 
-    btnProx.disabled = true
+        const options = document.getElementsByName("option")
 
-    btnTentarNovamente.disabled = false
-  }
+        let alternativaCorreta = null
+
+        options.forEach((option) => {
+
+            if (option.value == respostaCorreta) {
+
+                alternativaCorreta = option.labels[0].id
+            }
+        })
+
+        options.forEach((option) => {
+
+            if (option.checked && option.value == respostaCorreta) {
+
+                document.getElementById(alternativaCorreta)
+                    .classList.add("text-success-with-bg")
+
+                pontuacaoFinal++
+                certas++
+
+                document.getElementById("spanCertas").innerHTML = certas
+
+                numeroDaQuestaoAtual++
+
+            }
+
+            else if (option.checked && option.value != respostaCorreta) {
+
+                const errada = option.labels[0].id
+
+                document.getElementById(errada)
+                    .classList.add("text-danger-with-bg")
+
+                document.getElementById(alternativaCorreta)
+                    .classList.add("text-success-with-bg")
+
+                erradas++
+
+                document.getElementById("spanErradas").innerHTML = erradas
+
+                numeroDaQuestaoAtual++
+            }
+
+        })
+    }
+
+    function limparCores() {
+
+        const options = document.getElementsByName("option")
+
+        options.forEach((option) => {
+
+            document.getElementById(option.labels[0].id)
+                .classList.remove("text-danger-with-bg")
+
+            document.getElementById(option.labels[0].id)
+                .classList.remove("text-success-with-bg")
+
+        })
+    }
+
+    function desmarcarRadioButtons() {
+
+        const options = document.getElementsByName("option")
+
+        for (let i = 0; i < options.length; i++) {
+
+            options[i].checked = false
+        }
+    }
+
+    function finalizarJogo() {
+
+        let mensagemFinal = ""
+
+        let classeMensagem = ""
+
+        const porcentagem = pontuacaoFinal / quantidadeDeQuestoes
+
+        if (porcentagem <= 0.3) {
+
+            mensagemFinal = "Você precisa treinar mais!"
+
+            classeMensagem = "text-danger-with-bg"
+
+        }
+
+        else if (porcentagem < 0.9) {
+
+            mensagemFinal = "Bom desempenho!"
+
+            classeMensagem = "text-warning-with-bg"
+
+        }
+
+        else {
+
+            mensagemFinal = "Parabéns! Você é fera no tênis de mesa!"
+
+            classeMensagem = "text-success-with-bg"
+        }
+
+        mensagemFinal += "<br> Você acertou " +
+            Math.round(porcentagem * 100) + "% das questões."
+
+        document.getElementById("msgFinal").innerHTML = mensagemFinal
+
+        document.getElementById("msgFinal")
+            .classList.add(classeMensagem)
+
+        document.getElementById("spanPontuacaoFinal")
+            .innerHTML = pontuacaoFinal
+
+        btnSubmeter.disabled = true
+
+        btnProx.disabled = true
+
+        btnTentarNovamente.disabled = false
+    }
 
 </script>
