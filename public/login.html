@@ -33,31 +33,15 @@
 
         <ul class="navbar">
 
-          <li>
-            <a href="index.html">Inicio</a>
-          </li>
-
-          <li>
-            <a href="index.html#historia">História</a>
-          </li>
-
-          <li>
-            <a href="regras.html">Regras</a>
-          </li>
-
-          <li>
-            <a href="quiz.html">Quiz</a>
-          </li>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="index.html#historia">História</a></li>
+          <li><a href="regras.html">Regras</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
 
           <li>|</li>
 
-          <li class="agora">
-            <a href="login.html">Login</a>
-          </li>
-
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
+          <li class="agora"><a href="login.html">Login</a></li>
+          <li><a href="cadastro.html">Cadastro</a></li>
 
         </ul>
 
@@ -70,11 +54,9 @@
   <div class="login">
 
     <div class="alerta_erro">
-
-      <div class="card_erro" id="cardErro">
+      <div class="card_erro" id="cardErro" style="display:none;">
         <span id="mensagem_erro"></span>
       </div>
-
     </div>
 
     <div class="container">
@@ -87,13 +69,11 @@
 
           <div class="campo">
             <span>E-mail:</span>
-
             <input id="email_input" type="text" placeholder="meuemail@provedor.com">
           </div>
 
           <div class="campo">
             <span>Senha:</span>
-
             <input id="senha_input" type="password" placeholder="******">
           </div>
 
@@ -103,18 +83,15 @@
 
         </div>
 
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif">
+        <div id="div_aguardar" class="loading-div" style="display:none;">
+          <img src="./assets/circle-loading.gif">
         </div>
-
-        <div id="div_erros_login"></div>
 
       </div>
 
     </div>
 
   </div>
-
 
   <footer class="footer">
 
@@ -136,113 +113,84 @@
 
 <script>
 
-  function entrar() {
+function entrar() {
 
-    // aguardar();
+  var emailVar = email_input.value;
+  var senhaVar = senha_input.value;
 
-    // pegando os valores digitados nos inputs
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-
-    // vetor com os valores
-    var vt_campos = [emailVar, senhaVar];
-
-    // se algum campo estiver vazio
-    for (var i = 0; i < vt_campos.length; i++) {
-
-      if (vt_campos[i] == "") {
-
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "Preencha todos os campos!";
-        return false;
-      }
-    }
-
-    // validação de email
-    if (!emailVar.includes("@") || !emailVar.includes(".")) {
-
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "E-mail inválido!";
-      return false;
-    }
-
-    // esconde a mensagem depois de 5 segundos
-    setTimeout(sumirMensagem, 5000);
-
-    console.log("FORM LOGIN: ", emailVar);
-    console.log("FORM SENHA: ", senhaVar);
-
-    // requisição para o servidor
-    fetch("/usuarios/autenticar", {
-
-      method: "POST",
-
-      headers: {
-        "Content-Type": "application/json"
-      },
-
-      body: JSON.stringify({
-
-        emailServer: emailVar,
-        senhaServer: senhaVar
-
-      })
-
-    })
-
-      .then(function (resposta) {
-
-        console.log("ESTOU NO THEN DO entrar()!");
-
-        if (resposta.ok) {
-
-          console.log(resposta);
-
-          resposta.json().then(json => {
-
-            console.log(json);
-            console.log(JSON.stringify(json));
-
-            // salvando os dados do usuário
-            sessionStorage.EMAIL_USUARIO = json.email;
-            sessionStorage.NOME_USUARIO = json.nome;
-            sessionStorage.ID_USUARIO = json.id;
-
-            // redireciona para dashboard
-            setTimeout(function () {
-
-              window.location = "./dashboard/cards.html";
-
-            }, 1000);
-
-          });
-
-        } else {
-
-          console.log("Houve um erro ao tentar realizar o login!");
-
-          cardErro.style.display = "block";
-          mensagem_erro.innerHTML = "E-mail ou senha inválidos!";
-
-          resposta.text().then(texto => {
-
-            console.error(texto);
-          });
-        }
-
-      })
-
-      .catch(function (erro) {
-
-        console.log(erro);
-      });
-
-    return false;
-
-    function sumirMensagem() {
-
-      cardErro.style.display = "none";
-    }
+  // validação
+  if (!emailVar || !senhaVar) {
+    mostrarErro("Preencha todos os campos!");
+    return;
   }
+
+  if (!emailVar.includes("@") || !emailVar.includes(".")) {
+    mostrarErro("E-mail inválido!");
+    return;
+  }
+
+  // loading
+  div_aguardar.style.display = "block";
+
+  fetch("/usuarios/autenticar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      emailServer: emailVar,
+      senhaServer: senhaVar
+    })
+  })
+
+  .then(function (resposta) {
+
+    if (resposta.ok) {
+      return resposta.json();
+    } else {
+      throw "Erro no login";
+    }
+
+  })
+
+  .then(function (json) {
+
+    console.log("Usuário logado:", json);
+
+    // sessão
+    sessionStorage.EMAIL_USUARIO = json.email;
+    sessionStorage.NOME_USUARIO = json.nome;
+    sessionStorage.ID_USUARIO = json.id;
+
+    // redirecionamento
+    setTimeout(function () {
+      window.location = "./index.html";
+    }, 1000);
+
+  })
+
+  .catch(function (erro) {
+
+    console.log(erro);
+    mostrarErro("E-mail ou senha inválidos!");
+
+  })
+
+  .finally(function () {
+    div_aguardar.style.display = "none";
+  });
+
+}
+
+
+// função de erro
+function mostrarErro(msg) {
+  cardErro.style.display = "block";
+  mensagem_erro.innerHTML = msg;
+
+  setTimeout(() => {
+    cardErro.style.display = "none";
+  }, 4000);
+}
 
 </script>
