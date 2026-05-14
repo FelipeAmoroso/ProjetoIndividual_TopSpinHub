@@ -332,9 +332,10 @@ body {
 #pontuacaoEJogo {
   margin-top: 140px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start; 
+  gap: 40px; 
   margin-bottom: 80px;
 }
 
@@ -364,12 +365,27 @@ body {
   border: 2px solid #e3b062;
   border-radius: 15px;
   padding: 20px;
-  width: 350px;
+  width: 260px; 
   color: white;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  font-size: 18px;
+  gap: 10px;
+  font-size: 16px;
+
+  position: sticky; 
+  top: 120px; 
+}
+
+#pontuacao span {
+  display: block;
+  line-height: 1.6;
+}
+
+#spanCertas,
+#spanErradas,
+#spanPontuacaoFinal {
+  font-weight: bold;
+  color: #e3b062;
 }
 
 /* CARD QUIZ */
@@ -378,12 +394,12 @@ body {
   background-color: #081733;
   border: 2px solid #e3b062;
   border-radius: 15px;
-  width: 700px;
-  padding: 35px;
+  width: 550px; 
+  padding: 25px;
   color: white;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.4);
 }
 
@@ -396,7 +412,7 @@ body {
 }
 
 #spanQuestaoExibida {
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 700;
   line-height: 1.4;
   color: white;
