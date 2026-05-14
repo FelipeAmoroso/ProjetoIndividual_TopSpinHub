@@ -13,7 +13,6 @@
 
 <body>
 
-  <!-- HEADER -->
   <div class="header">
     <div class="container">
 
@@ -38,12 +37,12 @@
     </div>
   </div>
 
-  <!-- DASHBOARD -->
+  
   <div class="dashboard">
 
     <h2>Olá, <span id="b_usuario"></span> </h2>
 
-    <!-- INDICADORES -->
+
     <div class="indicadores">
 
       <div class="card">
@@ -63,13 +62,12 @@
 
     </div>
 
-    <!-- INFO EXTRA -->
+  
     <div class="extras">
       <p id="nivel"></p>
       <p id="mensagem"></p>
     </div>
 
-    <!-- GRÁFICO -->
     <div class="grafico">
       <canvas id="graficoQuiz" width="350" height="350"></canvas>
     </div>
@@ -89,15 +87,20 @@
 
   function carregarDashboard() {
 
-    var acertos = Number(sessionStorage.ACERTOS) || 7;
-    var erros = Number(sessionStorage.ERROS) || 3;
+fetch(`/resultados/listar/${sessionStorage.ID_USUARIO}`)
+  .then(res => res.json())
+  .then(dados => {
+
+    if (dados.length == 0) return;
+
+    // pega o ÚLTIMO resultado
+    var ultimo = dados[dados.length - 1];
+
+    var acertos = Number(ultimo.acertos);
+    var erros = Number(ultimo.erros);
 
     var total = acertos + erros;
     var porcentagem = total > 0 ? ((acertos / total) * 100).toFixed(1) : 0;
-
-    // indicadores
-    acertos = Number(acertos);
-    erros = Number(erros);
 
     document.getElementById("acertos").innerHTML = acertos;
     document.getElementById("erros").innerHTML = erros;
@@ -133,10 +136,8 @@
         responsive: false
       }
     });
-  }
 
-  function limparSessao() {
-    sessionStorage.clear();
-  }
+  });
+}
 
 </script>
