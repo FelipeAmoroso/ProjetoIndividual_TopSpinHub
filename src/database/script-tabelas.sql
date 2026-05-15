@@ -6,7 +6,7 @@
 comandos para mysql server
 */
 
-CREATE TABLE topspinhub;
+CREATE DATABASE topspinhub;
 USE topspinhub;
 
 CREATE TABLE usuario (
