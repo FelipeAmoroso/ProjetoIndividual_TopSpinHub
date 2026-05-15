@@ -121,12 +121,10 @@ function entrar() {
   // validação
   if (!emailVar || !senhaVar) {
     mostrarErro("Preencha todos os campos!");
-    return;
   }
 
   if (!emailVar.includes("@") || !emailVar.includes(".")) {
     mostrarErro("E-mail inválido!");
-    return;
   }
 
   // loading
@@ -164,7 +162,7 @@ function entrar() {
 
     // redirecionamento
     setTimeout(function () {
-      window.location = "./index.html";
+      window.location = "./quiz.html";
     }, 1000);
 
   })
