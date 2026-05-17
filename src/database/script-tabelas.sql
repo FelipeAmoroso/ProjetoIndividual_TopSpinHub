@@ -6,25 +6,41 @@
 comandos para mysql server
 */
 
-CREATE DATABASE topspinhub;
 USE topspinhub;
-
+ 
 CREATE TABLE usuario (
-    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(50),
-    email VARCHAR(50),
-    senha VARCHAR(50)
+    idUsuario   INT PRIMARY KEY AUTO_INCREMENT,
+    nome        VARCHAR(50) NOT NULL,
+    email       VARCHAR(50) NOT NULL UNIQUE,
+    senha       VARCHAR(50) NOT NULL
 );
-
-SELECT * FROM usuario;
-
-CREATE TABLE resultado (
-    idResultado INT PRIMARY KEY AUTO_INCREMENT,
-    fkUsuario INT,
-    acertos INT,
-    erros INT,
-    dataHora DATETIME,
+ 
+CREATE TABLE tentativas (
+    idTentativa    INT PRIMARY KEY AUTO_INCREMENT,
+    fkUsuario      INT NOT NULL,
+    data_tentativa DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
 );
+ 
+CREATE TABLE resultado (
+    idResultado INT PRIMARY KEY AUTO_INCREMENT,
+    fkUsuario   INT NOT NULL,
+    fkTentativa INT NOT NULL,
+    acertos     INT NOT NULL DEFAULT 0,
+    erros       INT NOT NULL DEFAULT 0,
+    dataHora    DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (fkUsuario)   REFERENCES usuario(idUsuario),
+    FOREIGN KEY (fkTentativa) REFERENCES tentativas(idTentativa)
+);
+ 
 
+SELECT * FROM usuario;
+SELECT * FROM tentativas;
 SELECT * FROM resultado;
+ 
+
+SELECT
+    u.nome, r.acertos, r.erros, t.data_tentativa
+FROM usuario u
+JOIN resultado  r ON r.fkUsuario   = u.idUsuario
+JOIN tentativas t ON r.fkTentativa = t.idTentativa;
