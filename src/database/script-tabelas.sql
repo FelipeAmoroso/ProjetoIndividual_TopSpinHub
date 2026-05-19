@@ -5,42 +5,42 @@
 /*
 comandos para mysql server
 */
-
+CREATE DATABASE topspinhub;
 USE topspinhub;
  
-CREATE TABLE usuario (
+CREATE TABLE usuarios (
     idUsuario   INT PRIMARY KEY AUTO_INCREMENT,
-    nome        VARCHAR(50) NOT NULL,
-    email       VARCHAR(50) NOT NULL UNIQUE,
-    senha       VARCHAR(50) NOT NULL
+    nome VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    senha VARCHAR(50) NOT NULL
 );
  
 CREATE TABLE tentativas (
-    idTentativa    INT PRIMARY KEY AUTO_INCREMENT,
-    fkUsuario      INT NOT NULL,
+    idTentativa INT PRIMARY KEY AUTO_INCREMENT,
+    fkUsuario INT NOT NULL,
     data_tentativa DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
+    FOREIGN KEY (fkUsuario) REFERENCES usuarios(idUsuario)
 );
  
-CREATE TABLE resultado (
+CREATE TABLE resultados (
     idResultado INT PRIMARY KEY AUTO_INCREMENT,
-    fkUsuario   INT NOT NULL,
+    fkUsuario INT NOT NULL,
     fkTentativa INT NOT NULL,
-    acertos     INT NOT NULL DEFAULT 0,
-    erros       INT NOT NULL DEFAULT 0,
-    dataHora    DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (fkUsuario)   REFERENCES usuario(idUsuario),
+    acertos INT NOT NULL DEFAULT 0,
+    erros INT NOT NULL DEFAULT 0,
+    dataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (fkUsuario)   REFERENCES usuarios(idUsuario),
     FOREIGN KEY (fkTentativa) REFERENCES tentativas(idTentativa)
 );
  
 
-SELECT * FROM usuario;
+SELECT * FROM usuarios;
 SELECT * FROM tentativas;
-SELECT * FROM resultado;
+SELECT * FROM resultados;
  
 
 SELECT
     u.nome, r.acertos, r.erros, t.data_tentativa
-FROM usuario u
-JOIN resultado  r ON r.fkUsuario   = u.idUsuario
+FROM usuarios u
+JOIN resultados  r ON r.fkUsuario   = u.idUsuario
 JOIN tentativas t ON r.fkTentativa = t.idTentativa;
