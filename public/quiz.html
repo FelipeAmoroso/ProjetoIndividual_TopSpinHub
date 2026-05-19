@@ -1,174 +1,141 @@
 <!DOCTYPE html>
 <html lang="pt-br">
- 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+
     <title>Top Spin Hub | Quiz</title>
- 
+
     <script src="./js/sessao.js"></script>
     <link rel="stylesheet" href="./css/estilo.css">
 </head>
- 
+
 <body onload="onloadEsconder()">
- 
+
     <div class="header">
- 
+
         <div class="container">
- 
+
             <div class="boxes">
- 
+
                 <div class="box">
- 
+
                     <a href="#">
                         <img src="./assets/imgs/logo.png" alt="Logo Top Spin Hub">
                     </a>
- 
+
                 </div>
- 
+
             </div>
- 
+
             <div class="container_bt">
- 
+
                 <ul class="navbar">
- 
+
                     <li class="agora">
                         <a href="index.html">Inicio</a>
                     </li>
- 
+
                     <li>
                         <a href="index.html">História</a>
                     </li>
- 
+
                     <li>
                         <a href="regras.html">Regras</a>
                     </li>
- 
+
                     <li>
                         <a href="quiz.html">Quiz</a>
                     </li>
- 
+
                     <li>|</li>
- 
+
                     <li>
                         <a href="login.html">Login</a>
                     </li>
- 
+
                     <li>
                         <a href="cadastro.html">Cadastro</a>
                     </li>
- 
+
                 </ul>
- 
+
             </div>
- 
+
         </div>
- 
+
     </div>
- 
+
     <div id="pontuacaoEJogo">
- 
-        <button id="btnIniciarQuiz" onclick="iniciarQuiz()">
-            INICIAR QUIZ
-        </button>
- 
+
+        <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+
         <div id="pontuacao">
- 
             <div id="pontuacaoDuranteJogo">
-                <span>
-                    Quantidade de acertos:
-                    <span id="spanCertas">0</span>
-                </span>
- 
-                <span>
-                    Quantidade de erros:
-                    <span id="spanErradas">0</span>
-                </span>
+                <span>Acertos: <span id="spanCertas">0</span></span>
+                <span>Erros: <span id="spanErradas">0</span></span>
             </div>
- 
+
             <div id="pontuacaoFinalJogo">
-                <span id="pontuacaoFinal">
-                    Pontuação Final:
-                    <span id="spanPontuacaoFinal">0</span>
-                </span>
- 
+                <span>Pontuação Final: <span id="spanPontuacaoFinal">0</span></span>
                 <span id="msgFinal"></span>
             </div>
- 
         </div>
- 
+
         <div id="jogo">
- 
+
             <div id="infoQuestao">
                 <span>
-                    Questão atual:
-                    <span id="spanNumeroDaQuestaoAtual"></span>
-                    de
-                    <span id="qtdQuestoes"></span>
-                    questões.
+                    Questão: <span id="spanNumeroDaQuestaoAtual"></span>
+                    de <span id="qtdQuestoes"></span>
                 </span>
             </div>
- 
+
             <div id="perguntaDaQuestaoAtual">
                 <span id="spanQuestaoExibida"></span>
             </div>
- 
-            <div id="infoAlternativas">
-                <span><em>Escolha uma opção:</em></span>
-            </div>
- 
+
             <div id="opcoes">
- 
+
                 <span>
                     <input type="radio" id="primeiraOpcao" name="option" value="alternativaA">
                     <label for="primeiraOpcao" id="labelOpcaoUm"></label>
                 </span>
- 
+
                 <span>
                     <input type="radio" id="segundaOpcao" name="option" value="alternativaB">
                     <label for="segundaOpcao" id="labelOpcaoDois"></label>
                 </span>
- 
+
                 <span>
                     <input type="radio" id="terceiraOpcao" name="option" value="alternativaC">
                     <label for="terceiraOpcao" id="labelOpcaoTres"></label>
                 </span>
- 
+
                 <span>
                     <input type="radio" id="quartaOpcao" name="option" value="alternativaD">
                     <label for="quartaOpcao" id="labelOpcaoQuatro"></label>
                 </span>
- 
+
             </div>
- 
+
             <div id="botoes">
- 
-                <button onclick="submeter()" id="btnSubmeter">
-                    Submeter resposta
-                </button>
- 
-                <button onclick="avancar()" id="btnProx" disabled>
-                    Próxima questão
-                </button>
- 
-                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>
-                    Tentar novamente
-                </button>
- 
+                <button onclick="submeter()" id="btnSubmeter">Submeter</button>
+                <button onclick="avancar()" id="btnProx" disabled>Próxima</button>
+                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
             </div>
- 
+
         </div>
- 
+
     </div>
- 
+
 </body>
- 
+
 </html>
- 
+
 <script>
- 
     const listaDeQuestoes = [
         {
             pergunta: "Qual país é considerado o berço do tênis de mesa?",
@@ -251,21 +218,20 @@
             alternativaCorreta: "alternativaB"
         }
     ];
- 
+
     let idTentativa = null;
     let numeroDaQuestaoAtual = 0;
     let pontuacaoFinal = 0;
     let certas = 0;
     let erradas = 0;
     let quantidadeDeQuestoes = listaDeQuestoes.length;
- 
+
     function onloadEsconder() {
         pontuacao.style.display = "none";
         jogo.style.display = "none";
     }
- 
+
     function iniciarQuiz() {
- 
         fetch("/tentativas/criar", {
             method: "POST",
             headers: {
@@ -277,142 +243,125 @@
         })
             .then(res => res.json())
             .then(dados => {
-
-                console.log("Resposta completa da API /tentativas/criar:", dados);
- 
-                idTentativa = dados.insertId
-                    || dados.id
-                    || dados.idTentativa
-                    || (Array.isArray(dados) && dados[0] && (dados[0].insertId || dados[0].id))
-                    || null;
- 
-                console.log("idTentativa setado:", idTentativa);
- 
-                if (!idTentativa) {
-                    console.warn("ATENÇÃO: idTentativa ficou null! Verifique o retorno da API acima.");
-                }
- 
+                idTentativa = dados.insertId || dados.id || null;
                 iniciarInterfaceQuiz();
-            })
-            .catch(erro => {
-                console.error("Erro ao criar tentativa:", erro);
             });
     }
- 
+
     function iniciarInterfaceQuiz() {
         pontuacao.style.display = "flex";
         jogo.style.display = "flex";
         btnIniciarQuiz.style.display = "none";
- 
+
         qtdQuestoes.innerHTML = quantidadeDeQuestoes;
- 
+
         preencherHTMLcomQuestaoAtual(0);
- 
+
         btnSubmeter.disabled = false;
         btnProx.disabled = true;
         btnTentarNovamente.disabled = true;
     }
- 
+
     function preencherHTMLcomQuestaoAtual(index) {
         habilitarAlternativas(true);
- 
-        const q = listaDeQuestoes[index];
+
+        const questaoAtual = listaDeQuestoes[index];
         numeroDaQuestaoAtual = index;
- 
+
         spanNumeroDaQuestaoAtual.innerHTML = index + 1;
-        spanQuestaoExibida.innerHTML = q.pergunta;
- 
-        labelOpcaoUm.innerHTML = q.alternativaA;
-        labelOpcaoDois.innerHTML = q.alternativaB;
-        labelOpcaoTres.innerHTML = q.alternativaC;
-        labelOpcaoQuatro.innerHTML = q.alternativaD;
+        spanQuestaoExibida.innerHTML = questaoAtual.pergunta;
+        labelOpcaoUm.innerHTML = questaoAtual.alternativaA;
+        labelOpcaoDois.innerHTML = questaoAtual.alternativaB;
+        labelOpcaoTres.innerHTML = questaoAtual.alternativaC;
+        labelOpcaoQuatro.innerHTML = questaoAtual.alternativaD;
     }
- 
+
     function submeter() {
         const options = document.getElementsByName("option");
+
         let marcada = false;
- 
         for (let i = 0; i < options.length; i++) {
-            if (options[i].checked) marcada = true;
+            if (options[i].checked)
+                marcada = true;
         }
- 
+
         if (!marcada) {
             alert("Escolha uma alternativa!");
         } else {
             btnSubmeter.disabled = true;
             btnProx.disabled = false;
+
             habilitarAlternativas(false);
             checarResposta();
         }
     }
- 
-    function habilitarAlternativas(valor) {
-        primeiraOpcao.disabled = !valor;
-        segundaOpcao.disabled = !valor;
-        terceiraOpcao.disabled = !valor;
-        quartaOpcao.disabled = !valor;
+
+    function habilitarAlternativas(trueOrFalse) {
+        let opcaoEscolhida = trueOrFalse ? false : true
+
+        primeiraOpcao.disabled = opcaoEscolhida
+        segundaOpcao.disabled = opcaoEscolhida
+        terceiraOpcao.disabled = opcaoEscolhida
+        quartaOpcao.disabled = opcaoEscolhida
     }
- 
+
     function avancar() {
+        limparCoresBackgroundOpcoes();
         btnProx.disabled = true;
         btnSubmeter.disabled = false;
- 
+
         desmarcarRadioButtons();
-        limparCores();
- 
+
         if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
             preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual);
         } else {
             finalizarJogo();
         }
     }
- 
+
     function tentarNovamente() {
         window.location.reload();
     }
- 
+
     function checarResposta() {
-        const q = listaDeQuestoes[numeroDaQuestaoAtual];
-        const correta = q.alternativaCorreta;
- 
+        const questaoAtual = listaDeQuestoes[numeroDaQuestaoAtual];
+        const respostaCorreta = questaoAtual.alternativaCorreta;
+
         const options = document.getElementsByName("option");
- 
         options.forEach(option => {
-            if (option.checked && option.value == correta) {
+            let label = option.labels[0];
+            if (option.value === respostaCorreta) {
+                label.classList.add("text-success-with-bg");
+            }
+            if (option.checked && option.value !== respostaCorreta) {
+                erradas++;
+                spanErradas.innerHTML = erradas;
+                label.classList.add("text-danger-with-bg");
+            }
+            if (option.checked && option.value === respostaCorreta) {
                 pontuacaoFinal++;
                 certas++;
                 spanCertas.innerHTML = certas;
-            } else if (option.checked) {
-                erradas++;
-                spanErradas.innerHTML = erradas;
             }
         });
- 
         numeroDaQuestaoAtual++;
     }
- 
-    function limparCores() { }
- 
+
+    function limparCoresBackgroundOpcoes() {
+        const options = document.getElementsByName("option");
+        options.forEach(option => {
+            let label = option.labels[0];
+            label.classList.remove("text-success-with-bg");
+            label.classList.remove("text-danger-with-bg");
+        });
+    }
+
     function desmarcarRadioButtons() {
         const options = document.getElementsByName("option");
         options.forEach(o => o.checked = false);
     }
- 
+
     function finalizarJogo() {
- 
-        console.log("ANTES DO FETCH /resultados/salvar:", {
-            fkUsuario: sessionStorage.ID_USUARIO,
-            fkTentativa: idTentativa,
-            acertos: certas,
-            erros: erradas
-        });
- 
-        if (!idTentativa) {
-            console.error("ERRO: idTentativa é null! A tentativa não foi criada corretamente.");
-            alert("Erro: tentativa não foi criada. Verifique o console para mais detalhes.");
-            return;
-        }
- 
         fetch("/resultados/salvar", {
             method: "POST",
             headers: {
@@ -424,28 +373,23 @@
                 acertos: certas,
                 erros: erradas
             })
-        })
-            .then(res => res.json())
-            .then(dados => {
-                console.log("Resultado salvo com sucesso:", dados);
-            })
-            .catch(erro => {
-                console.error("Erro ao salvar resultado:", erro);
-            });
- 
+        });
+
         const porcentagem = pontuacaoFinal / quantidadeDeQuestoes;
- 
-        if (porcentagem <= 0.3) msgFinal.innerHTML = "Precisa melhorar!";
-        else if (porcentagem < 0.9) msgFinal.innerHTML = "Bom desempenho!";
+        if (porcentagem <= 0.3) {
+            msgFinal.innerHTML = "Precisa melhorar!";
+        }
+        else if (porcentagem < 0.9) {
+            msgFinal.innerHTML = "Bom desempenho!";
+        }
         else msgFinal.innerHTML = "Excelente!";
- 
+
         spanPontuacaoFinal.innerHTML = pontuacaoFinal;
- 
+
         btnTentarNovamente.disabled = false;
- 
+
         setTimeout(() => {
             window.location.href = "dashboard/dashboard.html";
         }, 2000);
     }
- 
 </script>
