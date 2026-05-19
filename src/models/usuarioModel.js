@@ -5,7 +5,7 @@ function autenticar(email, senha) {
 
     var instrucaoSql = `
         SELECT idUsuario, nome, email, senha
-        FROM usuario
+        FROM usuarios
         WHERE email = '${email}' AND senha = '${senha}';
     `;
 
@@ -17,7 +17,7 @@ function cadastrar(nome, email, senha) {
     console.log("ACESSEI O USUARIO MODEL - CADASTRAR");
 
     var instrucaoSql = `
-        INSERT INTO usuario (nome, email, senha)
+        INSERT INTO usuarios (nome, email, senha)
         VALUES ('${nome}', '${email}', '${senha}');
     `;
 
