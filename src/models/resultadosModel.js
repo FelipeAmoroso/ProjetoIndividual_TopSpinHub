@@ -3,11 +3,11 @@ var database = require("../database/config");
 function salvar(fkUsuario, fkTentativa, acertos, erros) {
 
     var instrucao = `
-        INSERT INTO resultado (fkUsuario, fkTentativa, acertos, erros, dataHora)
+        INSERT INTO resultados (fkUsuario, fkTentativa, acertos, erros, dataHora)
         VALUES (${fkUsuario}, ${fkTentativa}, ${acertos}, ${erros}, NOW());
     `;
 
-    console.log("Executando SQL:", instrucao);
+    console.log("SQL:", instrucao);
 
     return database.executar(instrucao);
 }
@@ -20,14 +20,14 @@ function listar(idUsuario) {
             r.acertos,
             r.erros,
             t.data_tentativa
-        FROM usuario u
-        JOIN resultado r ON r.fkUsuario = u.idUsuario
-        LEFT JOIN tentativas t ON r.fkTentativa = t.idTentativa
+        FROM usuarios u
+        JOIN resultados r ON r.fkUsuario = u.idUsuario
+        JOIN tentativas t ON r.fkTentativa = t.idTentativa
         WHERE u.idUsuario = ${idUsuario}
         ORDER BY t.data_tentativa DESC;
     `;
 
-    console.log("Executando SQL:", instrucao);
+    console.log("SQL:", instrucao);
 
     return database.executar(instrucao);
 }
